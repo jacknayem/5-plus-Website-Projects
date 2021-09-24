@@ -1,0 +1,99 @@
+{% extends 'layouts.html'%}
+{% load static %}
+
+{% block main %}
+<main class="main mt-10">
+			<div class="container">
+				<div class="row row-sparse">
+					<div class="col-md-12 order-lg-last dashboard-content">
+						<h3 class="text-center">Order Information</h3>
+                        <form action="" method="post" class="form-inline">
+                            {% csrf_token %}
+                          <div class="form-group m-2">
+                            <input type="text" class="" id="search" name="search" placeholder="Search">
+                          </div>
+                          <button type="submit" name="searchdata" class="m-2">Search</button>
+                        </form>
+                            <table class="table table-hover">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Number</th>
+                                  <th scope="col">Address</th>
+                                  <th scope="col">Amount</th>
+                                  <th scope="col">Remark</th>
+                                   <th scope="col">Date</th>
+                                   <th scope="col">Items</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              {% for order in cartOrderList %}
+                                <tr>
+                                  <td>{{ order.CustomerName }}</td>
+                                  <td>{{ order.CustomerNumber }}</td>
+                                  <td>{{ order.CustomerAddress }}</td>
+                                  <td>{{ order.totalmount }}</td>
+                                  <td>
+                                      <form action="" method="post">
+                                          {% csrf_token %}
+                                          <input type="hidden" name="id" value="{{ order.id }}">
+                                          <input type="text" name="remark" value="{{ order.Remark }}">
+                                          <button type="submit" name="update">U</button>
+                                      </form></td>
+                                  <td>{{ order.OrderDate }}</td>
+                                  <td><!-- Large modal -->
+                                    <button type="button" class="" data-toggle="modal" data-target=".INV-{{ order.id }}">Detail</button>
+
+                                    <div class="modal fade INV-{{ order.id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <table class="table table-hover">
+                                              <thead>
+                                                <tr>
+                                                  <th scope="col">Image</th>
+                                                  <th scope="col">Name</th>
+                                                  <th scope="col">Quantity</th>
+                                                  <th scope="col">Price</th>
+                                                  <th scope="col">Total Price</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                              {% for item in cartOrderItemsList %}
+                                                      {% with order.id|stringformat:"i" as id_number %}
+                                                          {% if 'INV-'|add:id_number == item.invoice_no %}
+                                                            <tr>
+                                                              <th><img src="{{ item.image }}" alt="Product Image" width="100" height="100"></th>
+                                                              <td>{{ item.item }}</td>
+                                                              <td>{{ item.Qty }}</td>
+                                                              <td>{{ item.Price }}</td>
+                                                              <td>{{ item.TotalPrice }}</td>
+                                                            </tr>
+                                                          {% endif %}
+                                                      {% endwith %}
+                                              {% endfor %}
+                                              <tr>
+                                                  <td></td>
+                                                  <td></td>
+                                                  <td></td>
+                                                  <td><h4>Total Price:</h4></td>
+                                                  <td><h4>{{ order.totalmount }}</h4></td>
+                                              </tr>
+                                              </tbody>
+                                            </table>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                  </tr>
+                              {% endfor %}
+                              </tbody>
+                            </table>
+					</div><!-- End .col-lg-9 -->
+				</div><!-- End .row -->
+			</div><!-- End .container -->
+			<div class="mb-5"></div><!-- margin -->
+		</main><!-- End .main -->
+{% endblock %}

@@ -1,0 +1,125 @@
+{% extends 'layouts.html'%}
+{% load static %}
+
+{% block main %}
+    <main class="main mt-10" id="cartlist">
+			<div class="page-header">
+				<div class="container">
+					<h1>Shopping Cart</h1>
+				</div><!-- End .container -->
+			</div><!-- End .page-header -->
+
+			<div class="container">
+				<div class="row row-sparse">
+					<div class="col-sm-8 padding-right-sm">
+						<div class="cart-table-container">
+							<table class="table table-cart">
+								<thead>
+									<tr>
+										<th class="product-col">Product</th>
+										<th class="price-col">Price</th>
+										<th class="qty-col">Qty</th>
+                                        <th class="update-col">Update</th>
+										<th>Subtotal</th>
+                                        <th class="delete-col">Delete</th>
+									</tr>
+								</thead>
+								<tbody>
+                                {% for product_id, item in cart_data.items %}
+									<tr class="product-row">
+										<td class="product-col">
+											<figure class="product-image-container">
+												<a href="#" class="product-image">
+													<img src="{{ item.image}}" alt="product" height="60px" width="60px">
+												</a>
+											</figure>
+											<h6 class="product-title">
+												<a href="#">{{ item.title }}</a>
+											</h6>
+										</td>
+										<td><spen>৳</spen>{{ item.price }}</td>
+										<td>
+											<input class="product-qty-{{ product_id }}" type="number" style="width:50px" value="{{ item.qty}}">
+										</td>
+                                        <td> <button title="Edit product" class="btn-secondary" id="UpdateItems" data-item="{{ product_id }}"><span>Update</span></button></td>
+										<td><spen>৳</spen>{% widthratio item.price 1 item.qty %}</td>
+                                        <td><button class="btn-remove icon-cancel" id="deleteitem" data-item="{{ product_id }}"></button></td>
+									</tr>
+                                {% endfor %}
+								</tbody>
+							</table>
+						</div><!-- End .cart-table-container -->
+
+					</div><!-- End .col-lg-8 -->
+
+					<div class="col-sm-4">
+						<div class="cart-summary">
+							<h3>Provide Your Details</h3>
+							<table class="table table-totals">
+								<tbody>
+                                {% for x in subtotal_amt %}
+									<tr>
+										<td></td>
+                                        <td><spen>৳</spen>{{ x }}</td>
+									</tr>
+                                {% endfor %}
+                                    <tr>
+										<td>Order Total:</td>
+										<td><spen>৳</spen><span class="itemstotalcost">{{ total_amt }}</span></td>
+									</tr>
+                                    <tr>
+										<td>Delivery Cost</td>
+										<td><spen>৳</spen><spen id="deliverycostresult">0</spen></td>
+									</tr>
+                                    <tr>
+										<td><strong>Total Amount:</strong></td>
+										<td><strong><spen>৳</spen><span class="totalamountcost">{{ total_amt }}</span></strong></td>
+									</tr>
+                                </tbody>
+                                <tfoot>
+								</tfoot>
+                            </table>
+                                <form action="{% url 'cart'%}" method="post" role="form">
+                                    {% csrf_token %}
+									<div class="form-group required-field">
+										<label>আপনার নাম </label>
+										<input type="text" class="form-control" name="name" required>
+									</div><!-- End .form-group -->
+
+                                    <div class="form-group required-field">
+										<label>মোবাইল নাম্বার</label>
+										<div class="form-control-tooltip">
+											<input type="tel" class="form-control" name="phone" required>
+											<span class="input-tooltip" data-toggle="tooltip" title="For delivery questions." data-placement="right"><i class="icon-question-circle"></i></span>
+										</div><!-- End .form-control-tooltip -->
+									</div><!-- End .form-group -->
+
+									<div class="form-group">
+										<label>অঞ্চল নির্বাচন</label>
+										<div class="select-custom">
+											<select class="form-control DeliveryCost" name="area" id="AddDeliveryCost">
+												<option disabled selected value>--select--</option>
+                                                <option value="70">In Side Dhaka City</option>
+												<option value="150">Out Side Dhaka City</option>
+											</select>
+										</div><!-- End .select-custom -->
+									</div><!-- End .form-group -->
+                                    <input type="hidden" class="totalamountcostinput" name="totalamount" required>
+                                    <div class="form-group required-field">
+										<label>ঠিকানা </label>
+										<input type="text" class="form-control" name="address" required>
+									</div><!-- End .form-group -->
+                                    {% if totalitems %}
+                                    <div class="checkout-methods">
+                                        <button type="submit" class="btn btn-block btn-sm btn-primary">অর্ডার করুন</button>
+                                    </div><!-- End .checkout-methods -->
+                                    {% endif %}
+								</form>
+						</div><!-- End .cart-summary -->
+					</div><!-- End .col-lg-4 -->
+				</div><!-- End .row -->
+			</div><!-- End .container -->
+
+			<div class="mb-6"></div><!-- margin -->
+    </main><!-- End .main -->
+{% endblock %}

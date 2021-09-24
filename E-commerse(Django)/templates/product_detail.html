@@ -1,0 +1,282 @@
+{% extends 'layouts.html' %}
+{% load static %}
+
+{% block main %}
+    <main class="main mt-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 main-content">
+                    <div class="product-single-container product-single-default">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-6 product-single-gallery">
+                                <div class="product-slider-container">
+                                    <div class="product-single-carousel owl-carousel owl-theme">
+                                        <div class="product-item">
+                                            <img class="product-single-image" src="{{ productitem.ProductImage.url }}" data-zoom-image="{{ productitem.ProductImage.url }}"/>
+                                        </div>
+                                        {% if productitem.ProductImage2.url != ''%}
+                                        <div class="product-item">
+                                            <img class="product-single-image" src="{{ productitem.ProductImage2.url }}" data-zoom-image="{{ productitem.ProductImage2.url }}"/>
+                                        </div>
+                                        {% endif %}
+                                        {% if productitem.ProductImage3.url != ''%}
+                                        <div class="product-item">
+                                            <img class="product-single-image" src="{{ productitem.ProductImage3.url }}" data-zoom-image="{{ productitem.ProductImage3.url }}"/>
+                                        </div>
+                                        {% endif %}
+                                        {% if productitem.ProductImage4.url != ''%}
+                                        <div class="product-item">
+                                            <img class="product-single-image" src="{{ productitem.ProductImage4.url }}" data-zoom-image="{{ productitem.ProductImage4.url }}"/>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    <!-- End .product-single-carousel -->
+                                    <span class="prod-full-screen">
+                                        <i class="icon-plus"></i>
+                                    </span>
+                                </div>
+                                <div class="prod-thumbnail owl-dots" id='carousel-custom-dots'>
+                                    <div class="owl-dot">
+                                        <img src="{{ productitem.ProductImage.url }}"/>
+                                    </div>
+                                    {% if productitem.ProductImage2.url != ''%}
+                                    <div class="owl-dot">
+                                        <img src="{{ productitem.ProductImage2.url }}" />
+                                    </div>
+                                    {% endif %}
+                                    {% if productitem.ProductImage3.url != ''%}
+                                    <div class="owl-dot">
+                                        <img src="{{ productitem.ProductImage3.url }}"/>
+                                    </div>
+                                    {% endif %}
+                                    {% if productitem.ProductImage4.url != ''%}
+                                    <div class="owl-dot">
+                                        <img src="{{ productitem.ProductImage4.url }}"/>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div><!-- End .col-lg-7 -->
+
+                            <div class="col-lg-5 col-md-6 product-single-details">
+                                <h3 class="product-title">{{ productitem.Title }}</h3>
+
+                                <hr class="short-divider">
+
+                                <div class="price-box">
+                                    <span class="product-price">Price:</span>
+                                    <span>৳</span><span class="product-price product_price-{{ productitem.id }}">{{ productitem.Price }}</span>
+                                </div><!-- End .price-box -->
+
+                                <div class="product-desc">
+                                    <p>{{ productitem.Features }}</p>
+                                </div><!-- End .product-desc -->
+
+                                <ul class="single-info-list">
+                                    <li><span>Previous Price:</span>
+                                    <span>৳</span><span class="old-price" style="font-size: 14px;">{{ productitem.OldPrice }}</span></li>
+                                    <li>AVAILABILITY: <strong>AVAILABLE</strong></li>
+                                    <li><h4>সরাসরি অর্ডার করতে: <strong> <a href="tel:{{ ContactInfoList.1.details }}">{{ ContactInfoList.1.details }}</a></strong></h4></li>
+                                    <li><h5>অর্ডার বার্টনে ক্লিক করে আপনার পণ্যটি নিশ্চিত করুন </h5></li>
+                                    
+                                </ul>
+
+                                <hr class="divider">
+
+                                <div class="product-action">
+                                    <div class="product-single-qty">
+                                        <input class="horizontal-quantity form-control prduct_qty-{{ productitem.id }}" id="productQty" type="number" value="1">
+                                    </div><!-- End .product-single-qty -->
+                                    <input type="hidden" class="prduct_id-{{ productitem.id }}" value="{{ productitem.id }}">
+                                    <input type="hidden" class="prduct_image-{{ productitem.id }}" value="{{ productitem.ProductImage.url }}">
+                                    <input type="hidden" class="prduct_title-{{ productitem.id }}" value="{{ productitem.Title }}">
+                                    <button class="btn btn-secondary add-cart add-to-cart" data-index="{{ productitem.id }}" id="addToCartBtn" type="button" title="Add to Cart" style="color:#fff;padding: 10px 30px;">কার্ডে যোগ করুন</button>
+                                </div><!-- End .product-action -->
+                                <div class="row">
+                                    <div class="col-3"></div>
+                                    <div class="col-5">
+                                        <button class="btn btn-secondary add-cart add-to-cart" data-index="{{ productitem.id }}" id="addToCartBtn" type="button" title="Add to Cart"><a href="{% url 'cart'%}" style="color:#fff;padding: 10px 18px;"> অর্ডার করুন</a> </button>
+                                    </div>
+                                    <div class="col-4"></div>
+                                </div>
+                                <hr class="divider mb-1">
+
+                                <div class="product-single-share">
+                                    <label class="sr-only">Share:</label>
+
+                                    <div class="social-icons mr-2">
+                                        <a href="#" class="social-icon social-facebook icon-facebook" target="_blank" title="Facebook"></a>
+                                        <a href="#" class="social-icon social-twitter icon-twitter" target="_blank" title="Twitter"></a>
+                                        <a href="#" class="social-icon social-linkedin fab fa-linkedin-in" target="_blank" title="Linkedin"></a>
+                                        <a href="#" class="social-icon social-gplus fab fa-google-plus-g" target="_blank" title="Google +"></a>
+                                        <a href="#" class="social-icon social-mail icon-mail-alt" target="_blank" title="Mail"></a>
+                                    </div><!-- End .social-icons -->
+                                </div><!-- End .product single-share -->
+                            </div><!-- End .product-single-details -->
+                        </div><!-- End .row -->
+                    </div><!-- End .product-single-container -->
+
+                    <div class="product-single-tabs">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="product-tab-desc" data-toggle="tab" href="#product-desc-content" role="tab" aria-controls="product-desc-content" aria-selected="true">Description</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="product-tab-more-info" data-toggle="tab" href="#product-more-info-content" role="tab" aria-controls="product-more-info-content" aria-selected="false">More Info</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="product-tab-tags" data-toggle="tab" href="#product-tags-content" role="tab" aria-controls="product-tags-content" aria-selected="false">Tags</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="product-desc-content" role="tabpanel" aria-labelledby="product-tab-desc">
+                                <div class="product-desc-content">
+                                    <p>{{ productitem.Description }}</p>
+                                </div><!-- End .product-desc-content -->
+                            </div><!-- End .tab-pane -->
+                        </div><!-- End .tab-content -->
+                    </div><!-- End .product-single-tabs -->
+                </div><!-- End .main-content -->
+
+                <div class="sidebar-overlay"></div>
+                <div class="sidebar-toggle"><i class="fas fa-sliders-h"></i></div>
+                <aside class="sidebar-product col-lg-3 mobile-sidebar">
+                    <div class="sidebar-wrapper">
+                        <div class="widget widget-info">
+                            <ul>
+                                <li>
+                                    <i class="icon-shipping"></i>
+                                    <h4>FREE<br>SHIPPING <br> ORDER OVER 2k</h4>
+                                </li>
+                                <li>
+                                    <i class="icon-us-dollar"></i>
+                                    <h4>100% MONEY<br>BACK GUARANTEE</h4>
+                                </li>
+                                <li>
+                                    <i class="icon-online-support"></i>
+                                    <h4>ONLINE<br>SUPPORT 24/7 <br> <a href="tel:{ {ContactInfoList.1.details }}">{{ ContactInfoList.1.details }}</a></h4>
+                                </li>
+                            </ul>
+                        </div><!-- End .widget -->
+
+                        <div class="widget">
+                            <a href="#">
+                                <img src="{% static 'assets/images/banners/banner-sidebar.jpg'%}" class="w-100" alt="Banner Desc">
+                            </a>
+                        </div><!-- End .widget -->
+
+                        <div class="widget widget-featured">
+                            <h3 class="widget-title">Featured</h3>
+
+                            <div class="widget-body">
+                                <div class="owl-carousel widget-featured-products">
+                                    <div class="featured-col">
+                                        {% for prod in productdata %}
+                                        <div class="product-default left-details product-widget">
+                                            <figure>
+                                                <a href="/product_detail/{{ prod.id }}">
+                                                    <img src="{{ prod.ProductImage.url }}">
+                                                </a>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h5 class="product-title">
+                                                    <a href="/product_detail/{{ prod.id }}">{{ prod.Title }}</a>
+                                                </h5>
+                                                <div class="ratings-container">
+                                                    <div class="product-ratings">
+                                                        <span class="ratings" style="width:100%"></span><!-- End .ratings -->
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div><!-- End .product-ratings -->
+                                                </div><!-- End .ratings-container -->
+                                                <div class="price-box">
+                                                    <span>৳</span><span class="product-price">{{ prod.Price }}</span>
+                                                </div><!-- End .price-box -->
+                                            </div><!-- End .product-details -->
+                                        </div>
+                                        {% endfor %}
+                                    </div><!-- End .featured-col -->
+
+                                    <div class="featured-col">
+                                        <div class="product-default left-details product-widget">
+                                            <figure>
+                                                <a href="product.html">
+                                                    <img src="assets/images/products/product-4.jpg">
+                                                </a>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h5 class="product-title">
+                                                    <a href="product.html">Product Short Name</a>
+                                                </h5>
+                                                <div class="ratings-container">
+                                                    <div class="product-ratings">
+                                                        <span class="ratings" style="width:100%"></span><!-- End .ratings -->
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div><!-- End .product-ratings -->
+                                                </div><!-- End .ratings-container -->
+                                                <div class="price-box">
+                                                    <span class="product-price">$49.00</span>
+                                                </div><!-- End .price-box -->
+                                            </div><!-- End .product-details -->
+                                        </div>
+                                    </div><!-- End .featured-col -->
+                                </div><!-- End .widget-featured-slider -->
+                            </div><!-- End .widget-body -->
+                        </div><!-- End .widget -->
+                    </div>
+                </aside><!-- End .col-lg-3 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+
+        <div class="products-section">
+            <div class="container">
+                <h2>Related Products</h2>
+                <div class="products-slider owl-carousel owl-theme dots-top">
+                    {% for prod in productdata %}
+                    <div class="product-default inner-quickview inner-icon">
+                        <figure>
+                            <a href="/product_detail/{{ prod.id }}">
+                                <img src="{{ prod.ProductImage.url }}">
+                            </a>
+                            <div class="label-group">
+                                {% if prod.Discount != '' %}
+                                    <span class="product-label label-sale">-{{ prod.Discount }}%</span>
+                                {% endif %}
+                                {% if prod.Hot == 1 %}
+                                    <span class="product-label label-hot">HOT</span>
+                                {% endif %}
+                            </div>
+                            <input type="hidden" class="prduct_qty-{{ prod.id }}" id="productQty" type="number" value="1">
+                            <input type="hidden" class="prduct_id-{{ prod.id }}" value="{{ prod.id }}">
+                            <input type="hidden" class="prduct_image-{{ prod.id }}" value="{{ prod.ProductImage.url }}">
+                            <input type="hidden" class="prduct_title-{{ prod.id }}" value="{{ prod.Title }}">
+                            <div class="btn-icon-group">
+                                <button class="btn-icon btn-add-cart add-to-cart" data-index="{{ prod.id }}" data-toggle="modal" data-target="#addCartModal"><i class="icon-shopping-cart"></i></button>
+                            </div>
+                            <a href="#" class="btn-quickview" title="Quick View">Quick View</a>
+                        </figure>
+                        <div class="product-details">
+                            <div class="category-wrap">
+                                <div class="category-list">
+                                    <a href="#" class="product-category">category</a>
+                                </div>
+                            </div>
+                            <h2 class="product-title">
+                                <a href="/product_detail/{{ prod.id }}">{{ prod.Title }}</a>
+                            </h2>
+                            <div class="ratings-container">
+                                <div class="product-ratings">
+                                    <span class="ratings" style="width:100%"></span><!-- End .ratings -->
+                                    <span class="tooltiptext tooltip-top"></span>
+                                </div><!-- End .product-ratings -->
+                            </div><!-- End .product-container -->
+                            <div class="price-box">
+                                <span class="old-price">৳{{ prod.OldPrice }}</span>
+                                <span>৳</span><span class="product_price-{{ prod.id }}">{{ prod.Price }}</span>
+                            </div><!-- End .price-box -->
+                        </div><!-- End .product-details -->
+                    </div>
+                    {% endfor %}
+                </div><!-- End .products-slider -->
+            </div><!-- End .container -->
+        </div><!-- End .products-section -->
+    </main><!-- End .main -->
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'layouts.html'%}
+{% load static %}
+{% block main %}
+			<div class="page-header">
+				<div class="container">
+					<h3>Login Order Status</h3>
+				</div><!-- End .container -->
+			</div><!-- End .page-header -->
+			<div class="container">
+				<div class="row row-sparse">
+                    <div class="col-md-4"></div>
+					<div class="col-md-4">
+						<div class="heading">
+							<h4 class="title text-center">Login</h4>
+                            {% for message in messages %}
+                              <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message }}
+                              </div>
+                            {% endfor %}
+						</div><!-- End .heading -->
+
+						<form action="" method="post">
+                            {% csrf_token %}
+							<input type="text" class="form-control" name="name" placeholder="User Name" required>
+							<input type="password" class="form-control" name="password" placeholder="Password"  required>
+
+							<div class="form-footer">
+								<button type="submit" class="btn btn-primary">LOGIN</button>
+							</div><!-- End .form-footer -->
+						</form>
+					</div><!-- End .col-md-4 -->
+                    <div class="col-md-4"></div>
+				</div><!-- End .row -->
+			</div><!-- End .container -->
+
+			<div class="mb-5"></div><!-- margin -->
+		</main><!-- End .main -->
+{% endblock %}

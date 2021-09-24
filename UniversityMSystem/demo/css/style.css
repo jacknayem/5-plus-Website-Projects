@@ -1,0 +1,170 @@
+
+/*Second navbar dropdown menu*/
+#dropdownacademy{
+	position: relative;
+}
+#academysubmenu{
+	position: absolute;
+	left: 0;
+}
+
+#dropdownadmission{
+	position: relative;
+}
+#admissionsubmenu{
+	position: absolute;
+	left: 0;
+}
+
+.navbar-toggler>.close {
+    display:inline;
+}
+.navbar-toggler.collapsed>.close, .navbar-toggler:not(.collapsed)>.navbar-toggler-icon {
+    display:none;
+}
+/*Footer*/
+footer a{
+	color: #ccced1;
+}
+footer a:hover{
+	color: #ffffff;
+	font-size: 17px;
+	text-decoration: none;
+}
+footer a:hover i{
+	/*color: #ffffff;*/
+	font-size: 55px;
+	text-decoration: none;
+}
+
+footer a:hover .fa-facebook-square{
+	color: #3B5998;
+	animation-name: facebook;
+	animation-duration: 4s;
+}
+@-webkit-keyframes facebook{
+	from{transform: rotate(0deg);color: #ffffff;}
+	to{transform: rotate(360deg);color: #3B5998;}
+}
+@keyframes facebook{
+	from{transform: rotate(0deg);color: #ffffff;}
+	to{transform: rotate(360deg);color: #3B5998;}
+}
+
+footer a:hover .fa-flickr{
+	color: #ff0084;
+	animation-name: flickr;
+	animation-duration: 4s;
+}
+@-webkit-keyframes flickr{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #ff0084;}
+}
+@keyframes flickr{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #ff0084;}
+}
+footer a:hover .fa-google-plus-square{
+	color: #dd4b39;
+	animation-name: googleplus;
+	animation-duration: 4s;
+}
+
+@-webkit-keyframes googleplus{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #dd4b39;}
+}
+@keyframes googleplus{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #dd4b39;}
+}
+
+footer a:hover .fa-instagram{
+	color: #e4405f;
+	animation-name: instagram;
+	animation-duration: 4s;
+}
+
+@-webkit-keyframes instagram{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #e4405f;}
+}
+@keyframes instagram{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #e4405f;}
+}
+
+footer a:hover .fa-youtube-square{
+	color: #cd201f;
+	animation-name: youtube;
+	animation-duration: 4s;
+}
+
+@-webkit-keyframes youtube{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #cd201f;}
+}
+@keyframes youtube{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #cd201f;}
+}
+
+footer a:hover .fa-linkedin{
+	color: #0077B5;
+	animation-name: linkedin;
+	animation-duration: 4s;
+}
+
+@-webkit-keyframes linkedin{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #0077B5;}
+}
+@keyframes linkedin{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #0077B5;}
+}
+
+footer a:hover .fa-quora{
+	color: #b92b27;
+	animation-name: quora;
+	animation-duration: 4s;
+}
+
+@-webkit-keyframes quora{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #b92b27;}
+}
+@keyframes quora{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #b92b27;}
+}
+
+footer a:hover .fa-twitter-square{
+	color: #55acee;
+	animation-name: twitter;
+	animation-duration: 4s;
+}
+
+@-webkit-keyframes twitter{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #55acee;}
+}
+@keyframes twitter{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #55acee;}
+}
+
+footer a:hover .fa-tumblr-square{
+	color: #34465d;
+	animation-name: tumblr;
+	animation-duration: 4s;
+}
+
+@-webkit-keyframes tumblr{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #34465d;}
+}
+@keyframes tumblr{
+	from{transform: rotate(0deg);color: #fff;}
+	to{transform: rotate(360deg);color: #34465d;}
+}
